@@ -17,30 +17,32 @@
  * }
  */
 
-// public class ListNode {
-//     public int val;
-//     public ListNode next;
-//     public ListNode(int val=0, ListNode next=null) {
-//         this.val = val;
-//         this.next = next;
-//     }
-// }
-
-public class Solution
-{
-    public ListNode DeleteDuplicates(ListNode head)
-    {
-        if (head == null || head.next == null) return head;
-        ListNode last = head;
-        ListNode current = head.next;
-        while (true)
-        {
-            if (current.val == last.val) last.next = current.next;
-            else last = current;
-            if (current.next == null) break;
-            current = current.next;
+namespace DeleteDuplicates{
+    public class ListNode {
+        public int val;
+        public ListNode next;
+        public ListNode(int val=0, ListNode next=null) {
+            this.val = val;
+            this.next = next;
         }
-        return head;
+    }
+    public class Solution
+    {
+        public ListNode DeleteDuplicates(ListNode head)
+        {
+            // TODO Optimize for lookahead instead of lookback to save space
+            if (head == null || head.next == null) return head;
+            ListNode last = head;
+            ListNode current = head.next;
+            while (true)
+            {
+                if (current.val == last.val) last.next = current.next;
+                else last = current;
+                if (current.next == null) break;
+                current = current.next;
+            }
+            return head;
+        }
     }
 }
 // @lc code=end
